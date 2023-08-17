@@ -2,7 +2,6 @@ from question_model import Question
 from data import question_data
 from quiz_brain import QuizBrain
 
-#question = Question()
 question_bank = []
 for questions in question_data:
     question = Question(questions["question"], questions["correct_answer"])

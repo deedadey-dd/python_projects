@@ -1,6 +1,4 @@
-#TODO: asking the question
-#TODO: checking if the answer given is right
-#TODO: cheking if we are at the end of the quiz.
+# TODO: asking the question
 
 class QuizBrain:
     def __init__(self, q_list):
@@ -8,8 +6,7 @@ class QuizBrain:
         self.question_list = q_list
         self.score = 0
 
-
-
+    # TODO: cheking if we are at the end of the quiz.
     def still_has_questions(self):
         if self.question_number < len(self.question_list):
             return True
@@ -22,11 +19,12 @@ class QuizBrain:
         self.question_number += 1
         self.check_answer(your_answer, current_question.answer)
 
+    # TODO: checking if the answer given is right
     def check_answer(self, your_answer, correct_answer):
         if your_answer.lower() == correct_answer.lower():
             print("You got it right!")
             self.score += 1
         else:
-            print("That's wong.")
+            print("That's wrong.")
         print(f"The correct answer is {correct_answer}")
         print(f"Your current score is: {self.score}/{self.question_number}\n")
