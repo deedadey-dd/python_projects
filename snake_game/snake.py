@@ -8,7 +8,9 @@ class Snake:
     def __init__(self):
         self.segment = []
         self.create_snake()
-
+        # self.last = len(segment)
+        # self.head = self.segment[0]
+        # self.tail = self.segment[len(segment) - 1]
     def create_snake(self):
         for num in range(STARTING_NUMBER):
             timmy = Turtle(shape="square")
