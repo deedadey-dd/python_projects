@@ -41,6 +41,7 @@ screen.tracer(0)
 snakey = Snake()
 food = Food()
 score = Score()
+food.change_location()
 
 
 screen.listen()
@@ -65,12 +66,16 @@ while game_is_on:
         score.scores += 1
         score.reprint()
 
-    for body in range(1, len(snakey.segment)):
-        if snakey.segment[0].distance(snakey.segment[body]) < 0:
+    # Detect Wall Collision
+    if snakey.head.xcor() > 290 or snakey.head.xcor() < -290 or snakey.head.ycor() > 290 or snakey.head.ycor() < -290:
+        game_is_on = False
+        score.game_over()
+
+    for body in snakey.segment[1:]:
+        # if body == snakey.segment[0]:
+        #     pass
+        if snakey.head.distance(body) < 10:
             game_is_on = False
-            print("Game Over")
-
-
-
+            score.game_over()
 
 screen.exitonclick()

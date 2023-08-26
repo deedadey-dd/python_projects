@@ -8,9 +8,9 @@ class Snake:
     def __init__(self):
         self.segment = []
         self.create_snake()
-        # self.last = len(segment)
-        # self.head = self.segment[0]
-        # self.tail = self.segment[len(segment) - 1]
+        self.head = self.segment[0]
+        self.tail = self.segment[:1]
+
     def create_snake(self):
         for num in range(STARTING_NUMBER):
             timmy = Turtle(shape="square")
@@ -37,7 +37,7 @@ class Snake:
         self.segment.append(timmy)
 
     def up(self):
-        if self.segment[0].heading() == 0 or self.segment[0].heading() ==180:
+        if self.segment[0].heading() == 0 or self.segment[0].heading() == 180:
             self.segment[0].setheading(90)
 
     def down(self):

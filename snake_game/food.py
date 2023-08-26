@@ -15,4 +15,3 @@ class Food(Turtle):
         random_x = random.randint(-14, 14)
         random_y = random.randint(-14, 14)
         self.goto(random_x * 20, random_y * 20)
-
