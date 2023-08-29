@@ -1,43 +1,34 @@
 from turtle import Turtle
 
 
-class Paddle:
-    def __init__(self):
-        self.left_segment = []
-        self.right_segment = []
+class Paddle(Turtle):
 
-# Create Paddle. Use the position to specify if it is left or right
+    def __init__(self, pos):
+        super().__init__()
+        #self.paddle = Turtle()
+        self.create_paddle(position=pos)
+
     def create_paddle(self, position):
-        pos = 1
-        segment = self.right_segment
+        if position == "left":
+            y_pos = -580
+        else:
+            y_pos = 580
 
-        if position.lower() == "left":
-            pos = -1
-            segment = self.left_segment
-        elif position.lower == "right":
-            pos = 1
+        self.color("white")
+        self.shape("square")
+        self.penup()
+        self.setheading(90)
+        self.shapesize(stretch_wid=1, stretch_len=5)
+        self.goto(y_pos, 0)
 
-        for _ in range(3):
-            timmy = Turtle()
-            timmy.shape("square")
-            timmy.penup()
-            timmy.setheading(90)
-            timmy.color("white")
-            timmy.goto(pos * 570, 20 * _)
-            segment.append(timmy)
+    def move_up(self):
+        if self.ycor() != 280:
+            self.forward(20)
 
-    def move(self, position):
-        segment = self.right_segment
+    def move_down(self):
+        if self.ycor() != -280:
+            self.backward(20)
 
-        if position.lower() == "left":
-            segment = self.left_segment
-        elif position.lower() == "right":
-            segment = self.right_segment
-
-        for seg in range(len(segment) - 1, 0, -1):
-            new_x = segment[seg - 1].xcor()
-            new_y = segment[seg - 1].ycor()
-
-            segment[seg].goto(new_x, new_y)
-        segment[0].forward(20)
-        print(segment)
+    def paddle_position(self):
+        new_paddle_position = self.pos()
+        return new_paddle_position

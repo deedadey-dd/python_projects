@@ -1,27 +1,43 @@
 from turtle import Screen
 from paddle import Paddle
-import time
-
+from ball import Ball
 
 screen = Screen()
 screen.bgcolor("black")
-screen.setup(width=1200, height=700)
+screen.setup(width=1190, height=650)
+screen.title("PONG")
 screen.tracer(0)
+# don't forget to update the screen else no display of elements
 
-# Create and move the paddles
-paddle = Paddle()
-left_paddle = paddle.create_paddle("left")
-right_paddle = paddle.create_paddle("right")
-screen.update()
+# create paddles
+left_paddle = Paddle(pos="left")
+right_paddle = Paddle(pos="right")
 
-
-# Move the paddles
-screen.listen()
-screen.update()
-time.sleep(0.1)
-screen.onkey(fun=paddle.move("right"), key="Up")
+# TODO Create ball
+ball = Ball()
 
 
+# Start the game
+game_is_on = True
 
+while game_is_on:
+    screen.update()
+# move the ball
+
+    ball.move_ball(angle=27)
+
+# listen for key presses and move paddles accordingly
+    screen.listen()
+    screen.onkey(fun=right_paddle.move_up, key="Up")
+    screen.onkey(fun=right_paddle.move_down, key="Down")
+    screen.onkey(fun=left_paddle.move_up, key="w")
+    screen.onkey(fun=left_paddle.move_down, key="s")
+
+    # detect collision with walls
+    # detect collision with paddles
+    if ball.xcor() == 580 and ball.distance(right_paddle) < 10:
+        ball.setheading(120)
+
+    # keep scores
 
 screen.exitonclick()
