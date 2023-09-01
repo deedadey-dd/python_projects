@@ -5,7 +5,6 @@ class Paddle(Turtle):
 
     def __init__(self, pos):
         super().__init__()
-        #self.paddle = Turtle()
         self.create_paddle(position=pos)
 
     def create_paddle(self, position):
@@ -18,16 +17,16 @@ class Paddle(Turtle):
         self.shape("square")
         self.penup()
         self.setheading(90)
-        self.shapesize(stretch_wid=1, stretch_len=5)
+        self.shapesize(stretch_wid=1, stretch_len=4)
         self.goto(y_pos, 0)
 
     def move_up(self):
         if self.ycor() != 280:
-            self.forward(20)
+            self.forward(60)
 
     def move_down(self):
         if self.ycor() != -280:
-            self.backward(20)
+            self.backward(60)
 
     def paddle_position(self):
         new_paddle_position = self.pos()

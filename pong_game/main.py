@@ -1,6 +1,9 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+import time
+from turtle import Turtle
+
 
 screen = Screen()
 screen.bgcolor("black")
@@ -16,15 +19,18 @@ right_paddle = Paddle(pos="right")
 # TODO Create ball
 ball = Ball()
 
+score = Turtle()
 
 # Start the game
 game_is_on = True
+#angle = 45
 
 while game_is_on:
     screen.update()
 # move the ball
+    time.sleep(0.04)
 
-    ball.move_ball(angle=27)
+    ball.move_ball()
 
 # listen for key presses and move paddles accordingly
     screen.listen()
@@ -34,10 +40,22 @@ while game_is_on:
     screen.onkey(fun=left_paddle.move_down, key="s")
 
     # detect collision with walls
-    # detect collision with paddles
-    if ball.xcor() == 580 and ball.distance(right_paddle) < 10:
-        ball.setheading(120)
+    ball.wall_bounce()
 
-    # keep scores
+    # detect collision with paddles
+    if ball.xcor() < -560 and ball.distance(left_paddle) < 20:
+        ball.paddle_bounce()
+    elif ball.xcor() > 560 and ball.distance(right_paddle) < 20:
+        ball.paddle_bounce()
+
+
+# detect escape and game over
+    if ball.xcor() < -650 and ball.distance(left_paddle) > 50:
+        game_is_on = False
+        ball.game_over()
+
+    if ball.xcor() > 600 and ball.distance(right_paddle) < 50:
+        game_is_on = False
+        ball.game_over()
 
 screen.exitonclick()
