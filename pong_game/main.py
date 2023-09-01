@@ -2,7 +2,7 @@ from turtle import Screen
 from paddle import Paddle
 from ball import Ball
 import time
-from turtle import Turtle
+from scoreboard import Score
 
 
 screen = Screen()
@@ -19,11 +19,11 @@ right_paddle = Paddle(pos="right")
 # TODO Create ball
 ball = Ball()
 
-score = Turtle()
+score = Score()
 
 # Start the game
 game_is_on = True
-#angle = 45
+
 
 while game_is_on:
     screen.update()
@@ -50,12 +50,12 @@ while game_is_on:
 
 
 # detect escape and game over
-    if ball.xcor() < -650 and ball.distance(left_paddle) > 50:
-        game_is_on = False
-        ball.game_over()
+    if ball.xcor() < -650 and ball.distance(left_paddle) > 40:
+        ball.reset_to_right()
+        score.r_point()
 
-    if ball.xcor() > 600 and ball.distance(right_paddle) < 50:
-        game_is_on = False
-        ball.game_over()
+    if ball.xcor() > 600 and ball.distance(right_paddle) > 40:
+        ball.reset_to_left()
+        score.l_point()
 
 screen.exitonclick()

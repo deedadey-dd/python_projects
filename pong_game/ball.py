@@ -1,4 +1,5 @@
 from turtle import Turtle
+import random
 
 import paddle
 from paddle import Paddle
@@ -10,7 +11,8 @@ class Ball(Turtle):
         self.shape("circle")
         self.penup()
         self.color("white")
-        self.angle = 45
+        self.ANGLES = [45, 315, 135, 225]
+        self.angle = random.choice(self.ANGLES)
 
     def move_ball(self):
         self.setheading(self.angle)
@@ -43,6 +45,16 @@ class Ball(Turtle):
         else:
             self.angle -= 90
 
+    def reset_to_left(self):
+        l_angles = random.choice(self.ANGLES[2:])
+        self.goto(0, 0)
+        self.angle = l_angles
+
+    def reset_to_right(self):
+        r_angles = random.choice(self.ANGLES[:2])
+        self.goto(0, 0)
+        self.angle = r_angles
+
     def game_over(self):
         self.goto(0, 0)
-        self.write("GAME OVER", move=False, align="center", font=("Courier", 16, "normal"))
+        self.write("GAME OVER", move=False, align="center", font=("Courier", 20, "normal"))
