@@ -14,11 +14,14 @@ player = Player()
 
 car = CarManager()
 
+score = Scoreboard()
+
 game_is_on = True
 
 
 while game_is_on:
-    time.sleep(0.1)
+    score.update_score()
+    time.sleep(0.04)
     screen.update()
 
     # move player upon key press
@@ -28,10 +31,18 @@ while game_is_on:
 
     car.create_car()
     car.move_cars()
+    car.hideturtle()
 
     for cars in car.all_cars:
         if player.distance(cars) < 20:
             game_is_on = False
-            player.write("GAME OVER", move=False, font=("Courier", 25, "normal"))
+            score.gama_over()
+
+    if player.ycor() > 280:
+        player.goto(0, -280)
+        car.increase_speed()
+        score.level_up()
+        score.update_score()
+
 
 screen.exitonclick()
