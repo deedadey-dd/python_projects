@@ -10,38 +10,11 @@ screen.bgcolor("black")
 screen.tracer(0)
 
 
-# segment = []
-# # color = ["green", "blue", "white", "yellow", "purple", "gray"]
-#
-# def snake(number):
-#     timmy = Turtle(shape="square")
-#     timmy.penup()
-#     timmy.color("white")
-#     timmy.goto(x=-20 * number, y=0)
-#     return timmy
-#
-#
-# for num in range(0, 3):
-#     segment.append(snake(num))
-#
-# game_is_on = True
-#
-#
-# while game_is_on:
-#     screen.update()
-#     time.sleep(0.1)
-#
-#     for seg in range(len(segment) - 1, 0, -1):
-#         new_x = segment[seg-1].xcor()
-#         new_y = segment[seg-1].ycor()
-#
-#         segment[seg].goto(new_x, new_y)
-#     segment[0].forward(20)
-
 snakey = Snake()
 food = Food()
 score = Score()
 food.change_location()
+
 
 
 screen.listen()
@@ -52,10 +25,13 @@ screen.onkey(snakey.right, "Right")
 
 score.reprint()
 
+
+
+
 game_is_on = True
 while game_is_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.2)
     snakey.move()
 
     # Collision Detection
@@ -69,6 +45,7 @@ while game_is_on:
     # Detect Wall Collision
     if snakey.head.xcor() > 290 or snakey.head.xcor() < -290 or snakey.head.ycor() > 290 or snakey.head.ycor() < -290:
         game_is_on = False
+        score.update_high_score()
         score.game_over()
 
     for body in snakey.segment[1:]:
@@ -76,6 +53,7 @@ while game_is_on:
         #     pass
         if snakey.head.distance(body) < 10:
             game_is_on = False
+            score.update_high_score()
             score.game_over()
 
 screen.exitonclick()
