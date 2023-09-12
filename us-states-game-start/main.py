@@ -3,7 +3,6 @@ import pandas
 
 screen = turtle.Screen()
 screen.title("U.S. States Games")
-# screen.screensize(canvheight=500, canvwidth=1000)
 screen.bgpic("blank_states_img.gif")
 
 # answer_text = screen.textinput("Guess a State", "What's Another State Name?").title()
@@ -25,10 +24,10 @@ while guess_count < 50:
 
     answer_text = screen.textinput(f"{guess_count}/50 States Correct", "What's Another State Name?").title()
     if answer_text == "Exit":
-        remaining_states = []
-        for state in all_states:
-            if state not in guesses:
-                remaining_states.append(state)
+        remaining_states = [state for state in all_states if state not in guesses]
+        # for state in all_states:
+        #     if state not in guesses:
+        #         remaining_states.append(state)
         new_data = pandas.DataFrame(remaining_states)
         new_data.to_csv("remaining_states.csv")
         break
