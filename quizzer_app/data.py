@@ -105,7 +105,7 @@
 import requests
 
 API = "https://opentdb.com/api.php"
-NUM_OF_QS = 3
+NUM_OF_QS = 10
 CATEGORY = 18
 TYPE = "boolean"
 

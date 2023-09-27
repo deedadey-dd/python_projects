@@ -57,9 +57,9 @@ class QuizInterface:
 
     def give_feedback(self, is_right):
         if is_right:
-            self.canvas.configure(bg="green")
+            self.canvas.configure(bg="#A6FF96")
         else:
-            self.canvas.configure(bg="red")
+            self.canvas.configure(bg="#F12D2D")
         self.canvas.after(1000, self.get_next_question)
 
     def white_canvas(self):
