@@ -1,0 +1,32 @@
+* {
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+}
+
+.hero_image {
+    width: 100%;
+    height: auto;
+    border: 5px solid white;
+}
+
+div {
+    width: 50%;
+    margin: 25%;
+    background-color: black;
+    text-align: center;
+    color: white;
+    width: 400px;
+    padding: 40px;
+    font-family: 'Libre Baskerville', serif;
+}
+
+h1 {
+    background-color: black ;
+    margin: 0px;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 2px;
+    background-color: black;
+}
